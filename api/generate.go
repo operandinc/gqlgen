@@ -4,12 +4,12 @@ import (
 	"fmt"
 	"syscall"
 
-	"github.com/99designs/gqlgen/codegen"
-	"github.com/99designs/gqlgen/codegen/config"
-	"github.com/99designs/gqlgen/plugin"
-	"github.com/99designs/gqlgen/plugin/federation"
-	"github.com/99designs/gqlgen/plugin/modelgen"
-	"github.com/99designs/gqlgen/plugin/resolvergen"
+	"github.com/operandinc/gqlgen/codegen"
+	"github.com/operandinc/gqlgen/codegen/config"
+	"github.com/operandinc/gqlgen/plugin"
+	"github.com/operandinc/gqlgen/plugin/federation"
+	"github.com/operandinc/gqlgen/plugin/modelgen"
+	"github.com/operandinc/gqlgen/plugin/resolvergen"
 )
 
 func Generate(cfg *config.Config, option ...Option) error {

@@ -9,7 +9,7 @@ import (
 	"net/textproto"
 	"testing"
 
-	"github.com/99designs/gqlgen/client"
+	"github.com/operandinc/gqlgen/client"
 	"github.com/stretchr/testify/require"
 )
 

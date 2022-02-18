@@ -5,10 +5,10 @@ set -euo pipefail
 gqlgen_dir=$(pwd)
 cd $(mktemp -d)
 go mod init inittest
-go mod edit -replace=github.com/99designs/gqlgen="$gqlgen_dir"
-go get -d github.com/99designs/gqlgen
+go mod edit -replace=github.com/operandinc/gqlgen="$gqlgen_dir"
+go get -d github.com/operandinc/gqlgen
 
-if ! go run github.com/99designs/gqlgen init &>/dev/null ; then
+if ! go run github.com/operandinc/gqlgen init &>/dev/null ; then
     echo "gqlgen init failed"
     exit 125
 fi

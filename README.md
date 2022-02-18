@@ -1,11 +1,10 @@
 ![gqlgen](https://user-images.githubusercontent.com/980499/133180111-d064b38c-6eb9-444b-a60f-7005a6e68222.png)
 
-
-# gqlgen [![Integration](https://github.com/99designs/gqlgen/actions/workflows/integration.yml/badge.svg)](https://github.com/99designs/gqlgen/actions) [![Coverage Status](https://coveralls.io/repos/github/99designs/gqlgen/badge.svg?branch=master)](https://coveralls.io/github/99designs/gqlgen?branch=master) [![Go Report Card](https://goreportcard.com/badge/github.com/99designs/gqlgen)](https://goreportcard.com/report/github.com/99designs/gqlgen) [![Go Reference](https://pkg.go.dev/badge/github.com/99designs/gqlgen.svg)](https://pkg.go.dev/github.com/99designs/gqlgen) [![Read the Docs](https://badgen.net/badge/docs/available/green)](http://gqlgen.com/)
+# gqlgen [![Integration](https://github.com/operandinc/gqlgen/actions/workflows/integration.yml/badge.svg)](https://github.com/operandinc/gqlgen/actions) [![Coverage Status](https://coveralls.io/repos/github/99designs/gqlgen/badge.svg?branch=master)](https://coveralls.io/github/99designs/gqlgen?branch=master) [![Go Report Card](https://goreportcard.com/badge/github.com/operandinc/gqlgen)](https://goreportcard.com/report/github.com/operandinc/gqlgen) [![Go Reference](https://pkg.go.dev/badge/github.com/operandinc/gqlgen.svg)](https://pkg.go.dev/github.com/operandinc/gqlgen) [![Read the Docs](https://badgen.net/badge/docs/available/green)](http://gqlgen.com/)
 
 ## What is gqlgen?
 
-[gqlgen](https://github.com/99designs/gqlgen) is a Go library for building GraphQL servers without any fuss.<br/>
+[gqlgen](https://github.com/operandinc/gqlgen) is a Go library for building GraphQL servers without any fuss.<br/>
 
 - **gqlgen is based on a Schema first approach** — You get to Define your API using the GraphQL [Schema Definition Language](http://graphql.org/learn/schema/).
 - **gqlgen prioritizes Type safety** — You should never see `map[string]interface{}` here.
@@ -14,38 +13,41 @@
 Still not convinced enough to use **gqlgen**? Compare **gqlgen** with other Go graphql [implementations](https://gqlgen.com/feature-comparison/)
 
 ## Quick start
+
 1. [Initialise a new go module](https://golang.org/doc/tutorial/create-module)
 
-       mkdir example
-       cd example
-       go mod init example
+   mkdir example
+   cd example
+   go mod init example
 
-2. Add `github.com/99designs/gqlgen` to your [project's tools.go](https://github.com/golang/go/wiki/Modules#how-can-i-track-tool-dependencies-for-a-module)
+2. Add `github.com/operandinc/gqlgen` to your [project's tools.go](https://github.com/golang/go/wiki/Modules#how-can-i-track-tool-dependencies-for-a-module)
 
-       printf '// +build tools\npackage tools\nimport _ "github.com/99designs/gqlgen"' | gofmt > tools.go
-       go mod tidy
+   printf '// +build tools\npackage tools\nimport \_ "github.com/operandinc/gqlgen"' | gofmt > tools.go
+   go mod tidy
 
 3. Initialise gqlgen config and generate models
 
-       go run github.com/99designs/gqlgen init
-       printf 'package model' | gofmt > graph/model/doc.go
+   go run github.com/operandinc/gqlgen init
+   printf 'package model' | gofmt > graph/model/doc.go
 
 4. Start the graphql server
 
-       go run server.go
+   go run server.go
 
 More help to get started:
- - [Getting started tutorial](https://gqlgen.com/getting-started/) - a comprehensive guide to help you get started
- - [Real-world examples](https://github.com/99designs/gqlgen/tree/master/_examples) show how to create GraphQL applications
- - [Reference docs](https://pkg.go.dev/github.com/99designs/gqlgen) for the APIs
+
+- [Getting started tutorial](https://gqlgen.com/getting-started/) - a comprehensive guide to help you get started
+- [Real-world examples](https://github.com/operandinc/gqlgen/tree/master/_examples) show how to create GraphQL applications
+- [Reference docs](https://pkg.go.dev/github.com/operandinc/gqlgen) for the APIs
 
 ## Reporting Issues
 
-If you think you've found a bug, or something isn't behaving the way you think it should, please raise an [issue](https://github.com/99designs/gqlgen/issues) on GitHub.
+If you think you've found a bug, or something isn't behaving the way you think it should, please raise an [issue](https://github.com/operandinc/gqlgen/issues) on GitHub.
 
 ## Contributing
 
-We welcome contributions, Read our [Contribution Guidelines](https://github.com/99designs/gqlgen/blob/master/CONTRIBUTING.md) to learn more about contributing to **gqlgen**
+We welcome contributions, Read our [Contribution Guidelines](https://github.com/operandinc/gqlgen/blob/master/CONTRIBUTING.md) to learn more about contributing to **gqlgen**
+
 ## Frequently asked questions
 
 ### How do I prevent fetching child objects that might not be used?
@@ -54,9 +56,9 @@ When you have nested or recursive schema like this:
 
 ```graphql
 type User {
-  id: ID!
-  name: String!
-  friends: [User!]!
+	id: ID!
+	name: String!
+	friends: [User!]!
 }
 ```
 
@@ -107,19 +109,19 @@ func (r *userResolver) Friends(ctx context.Context, obj *User) ([]*User, error) 
 You can also use inline config with directives to achieve the same result
 
 ```graphql
-directive @goModel(model: String, models: [String!]) on OBJECT
-    | INPUT_OBJECT
-    | SCALAR
-    | ENUM
-    | INTERFACE
-    | UNION
+directive @goModel(
+	model: String
+	models: [String!]
+) on OBJECT | INPUT_OBJECT | SCALAR | ENUM | INTERFACE | UNION
 
-directive @goField(forceResolver: Boolean, name: String) on INPUT_FIELD_DEFINITION
-    | FIELD_DEFINITION
+directive @goField(
+	forceResolver: Boolean
+	name: String
+) on INPUT_FIELD_DEFINITION | FIELD_DEFINITION
 
 type User @goModel(model: "github.com/you/pkg/model.User") {
-    id: ID!         @goField(name: "todoId")
-    friends: [User!]!   @goField(forceResolver: true)
+	id: ID! @goField(name: "todoId")
+	friends: [User!]! @goField(forceResolver: true)
 }
 ```
 
@@ -131,8 +133,8 @@ Yes! You can by remapping it in config as seen below:
 models:
   ID: # The GraphQL type ID is backed by
     model:
-      - github.com/99designs/gqlgen/graphql.IntID # a go integer
-      - github.com/99designs/gqlgen/graphql.ID # or a go string
+      - github.com/operandinc/gqlgen/graphql.IntID # a go integer
+      - github.com/operandinc/gqlgen/graphql.ID # or a go string
 ```
 
 This means gqlgen will be able to automatically bind to strings or ints for models you have written yourself, but the

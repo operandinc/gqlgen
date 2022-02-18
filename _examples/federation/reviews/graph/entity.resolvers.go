@@ -6,8 +6,8 @@ package graph
 import (
 	"context"
 
-	"github.com/99designs/gqlgen/_examples/federation/reviews/graph/generated"
-	"github.com/99designs/gqlgen/_examples/federation/reviews/graph/model"
+	"github.com/operandinc/gqlgen/_examples/federation/reviews/graph/generated"
+	"github.com/operandinc/gqlgen/_examples/federation/reviews/graph/model"
 )
 
 func (r *entityResolver) FindProductByManufacturerIDAndID(ctx context.Context, manufacturerID string, id string) (*model.Product, error) {

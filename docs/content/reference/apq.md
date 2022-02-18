@@ -2,7 +2,7 @@
 title: "Automatic persisted queries"
 description:
 linkTitle: "APQ"
-menu: { main: { parent: 'reference', weight: 10 } }
+menu: { main: { parent: "reference", weight: 10 } }
 ---
 
 When you work with GraphQL by default your queries are transferred with every request. That can waste significant
@@ -20,14 +20,15 @@ For the server you need to implement the `graphql.Cache` interface and pass an i
 the `extension.AutomaticPersistedQuery` type. Make sure the extension is applied to your GraphQL handler.
 
 See example using [go-redis](https://github.com/go-redis/redis) package below:
+
 ```go
 import (
 	"context"
 	"time"
 
-	"github.com/99designs/gqlgen/graphql/handler"
-	"github.com/99designs/gqlgen/graphql/handler/extension"
-	"github.com/99designs/gqlgen/graphql/handler/transport"
+	"github.com/operandinc/gqlgen/graphql/handler"
+	"github.com/operandinc/gqlgen/graphql/handler/extension"
+	"github.com/operandinc/gqlgen/graphql/handler/transport"
 	"github.com/go-redis/redis"
 )
 

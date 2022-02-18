@@ -3,7 +3,7 @@ package codegen
 import (
 	"testing"
 
-	"github.com/99designs/gqlgen/codegen/config"
+	"github.com/operandinc/gqlgen/codegen/config"
 	"github.com/vektah/gqlparser/v2/ast"
 
 	"github.com/stretchr/testify/assert"

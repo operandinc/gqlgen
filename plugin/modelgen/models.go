@@ -6,9 +6,9 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/99designs/gqlgen/codegen/config"
-	"github.com/99designs/gqlgen/codegen/templates"
-	"github.com/99designs/gqlgen/plugin"
+	"github.com/operandinc/gqlgen/codegen/config"
+	"github.com/operandinc/gqlgen/codegen/templates"
+	"github.com/operandinc/gqlgen/plugin"
 	"github.com/vektah/gqlparser/v2/ast"
 )
 
@@ -223,7 +223,7 @@ func (m *Plugin) MutateConfig(cfg *config.Config) error {
 		cfg.Models.Add(it.Name, cfg.Model.ImportPath()+"."+templates.ToGo(it.Name))
 	}
 	for _, it := range b.Scalars {
-		cfg.Models.Add(it, "github.com/99designs/gqlgen/graphql.String")
+		cfg.Models.Add(it, "github.com/operandinc/gqlgen/graphql.String")
 	}
 
 	if len(b.Models) == 0 && len(b.Enums) == 0 && len(b.Interfaces) == 0 && len(b.Scalars) == 0 {

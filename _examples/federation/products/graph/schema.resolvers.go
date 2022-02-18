@@ -6,8 +6,8 @@ package graph
 import (
 	"context"
 
-	"github.com/99designs/gqlgen/_examples/federation/products/graph/generated"
-	"github.com/99designs/gqlgen/_examples/federation/products/graph/model"
+	"github.com/operandinc/gqlgen/_examples/federation/products/graph/generated"
+	"github.com/operandinc/gqlgen/_examples/federation/products/graph/model"
 )
 
 func (r *queryResolver) TopProducts(ctx context.Context, first *int) ([]*model.Product, error) {
